@@ -1,6 +1,9 @@
-# __A. GPIO Setting__
-
-## 1. Get GPIO Pin List
+# QDIO API documentation
+```
+version: 1.0.0
+```
+## A. GPIO Setting
+### 1. Get GPIO Pin List
 #### Description
 List all GPIO pin
 #### Command
@@ -30,7 +33,7 @@ $ curl -X GET http://192.168.80.107:9590/gpios -u admin:admin
 |direction|"in" or "out"          |
 |value    |0 or 1                 |
 
-## 2. Get a GPIO Pin
+### 2. Get a GPIO Pin
 #### Description
 Find a GPIO pin by ID
 #### Command
@@ -56,7 +59,7 @@ $ curl -X GET http://192.168.80.107:9590/gpios/1 -u admin:admin
 |direction|"in" or "out"          |
 |value    |0 or 1                 |
 
-## 3. Change Direction of GPIO Pin
+### 3. Change Direction of GPIO Pin
 #### Description
 Change the direction of a specified GPIO pin.
 #### Command
@@ -87,7 +90,7 @@ $ curl -H "Content-Type: application/json" -X PATCH -d '{"direction": "in"}' htt
 
 ![direction out](../images/direction_out.png) ![direction in](../images/direction_in.png)
 
-## 4. Change Value of GPIO Pin
+### 4. Change Value of GPIO Pin
 #### Description
 Change the value of a specified GPIO pin when the direction is "out".
 #### Command
@@ -119,9 +122,9 @@ $ curl -H "Content-Type: application/json" -X PATCH -d '{"value": 1}' http://192
 ![value 0](../images/value_0.png) ![value 1](../images/value_1.png)
 
 ---
-# __B. User Permission__
+## B. User Permission
 
-## 1. Get User Permission List
+### 1. Get User Permission List
 #### Description
 Get the permission of all users in the QDIO.
 #### Command
@@ -159,7 +162,7 @@ $ curl -X GET http://192.168.80.107:9590/users -u admin:admin
 |pin_id      |Integer between 1 and 8|
 
 
-## 2. Get Permission of User
+### 2. Get Permission of User
 #### Description
 Find a user's permission in the QDIO by ID.
 #### Command
@@ -189,7 +192,7 @@ $ curl -X GET http://192.168.80.107:9590/users/501/gpio -u admin:admin
 |pin_id      |integer between 1 and 8|
 |uid         |ID of user             |
 
-## 3. Add Permission to User
+### 3. Add Permission to User
 #### Description
 Add a permission of a pin to a user in the QDIO.
 #### Command
@@ -209,7 +212,7 @@ $ curl -H "Content-Type: application/json" -X POST -d '{"pin_id": 8}' http://192
 
 ![permission 8 on](../images/permission_8_on.png)
 
-## 4. Remove Permission from User
+### 4. Remove Permission from User
 #### Description
 Remove a permission of a pin from a user in the QDIO.
 #### Command
