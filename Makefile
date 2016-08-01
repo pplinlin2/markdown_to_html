@@ -1,18 +1,20 @@
+OUT = output
 PROJECT = qdio
 MD   = $(PROJECT).md
-TAR  = $(PROJECT).tgz
-HTML = $(PROJECT).html
-CSS = github.css
+TAR  = $(OUT)/$(PROJECT).tgz
+HTML = $(OUT)/$(PROJECT).html
+CSS  = $(OUT)/$(PROJECT).css
 
-MD_HTML = /usr/local/bin/github-markdown
-MD_CSS  = github-markdown-css
+PANDOC = pandoc
+MD_CSS = github-markdown-css
 
 all:
-	node $(MD_HTML) $(MD) > $(HTML)
+	@test -d $(OUT) || mkdir $(OUT)
+	$(PANDOC) $(MD) -f markdown_github -t html -o $(HTML)
 	@sed -i '1i\
 <html>\
   <head>\
-    <link rel="stylesheet" type="text/css" href="./$(CSS)"/>\
+    <link rel="stylesheet" type="text/css" href="$(PROJECT).css"/>\
     <style>\
       .markdown-body {\
         box-sizing: border-box;\
@@ -29,7 +31,8 @@ all:
 	tar -czf $(TAR) $(HTML) $(CSS)
 
 install:
-	sudo npm install -g github-markdown $(MD_CSS)
+	sudo apt-get install $(PANDOC)
+	sudo npm install -g $(MD_CSS)
 
 clean:
-	rm -rf $(TAR) $(HTML) $(CSS)
+	rm -rf $(OUT)
